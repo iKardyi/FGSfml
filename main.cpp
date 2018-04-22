@@ -1,85 +1,102 @@
-#include <SFML/Graphics.hpp>  //подключяем СФМЛ
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/System.hpp>
 
-sf::RenderWindow window;  //Задаем окно
-//sf::CircleShape circle(70, 4);  //задем круг с радиусом 70 и  4 углами
-sf::RectangleShape rectangle(sf::Vector2f(50,50));  //прямоугольник с шириной 150 и высотой 5
-sf::RectangleShape ground(sf::Vector2f(680,30));
-//sf::Image image;  //задаем картинку с названием image
-//sf::Texture texture;  //задаем текстуру с названием texture
-//sf::Sprite sprite;  //задаем спрайт с названием sprite 
-int x=50,y=50;
-int a;
-int main()
+int main(int argc, const char * argv[])
 {
-    
-	window.create(sf::VideoMode(640,480), "FGSfml");  //создаем оуно с разрешением 640:480 и азванием FGSfml
-	window.setFramerateLimit(60);  // фпс
+    sf::RenderWindow(window);
+    window.create(sf::VideoMode(800, 600), "My window");
 
-	//circle.setFillColor(sf::Color::Transparent);  //цвет круга прозрачний 
-	//circle.setOutlineColor(sf::Color::Yellow);  //цвет обводки круга
-	//circle.setOutlineThickness(2);  //толжина обводки
-	//circle.setPosition(320,240);  //позиция круга
-	//circle.rotate(45);  //поворот на 45 градусов 
+	sf::RectangleShape k(sf::Vector2f(5,100)); 
+	k.setPosition(5, 10);
+	sf::RectangleShape k1(sf::Vector2f(5,100));
+	k1.setPosition(50, 5);
+	k1.rotate(45);
+	sf::RectangleShape k2(sf::Vector2f(5,100));
+	k2.setPosition(5,60);
+	k2.rotate(-45);//k-complete
 
-	rectangle.setFillColor(sf::Color::Transparent);  //задаем цвет прямоугольнику
-	rectangle.setOutlineColor(sf::Color::Yellow);
-	rectangle.setOutlineThickness(2);
-	rectangle.setPosition(y, x);  //задаем позицию 
+	sf::CircleShape ko(50,20), o(40,20);
+	ko.setPosition(100,60);
+	o.setFillColor(sf::Color::Blue);
+	o.setPosition(110,70);//o-complete
+  
+	sf::RectangleShape l(sf::Vector2f(5,100)),l1(sf::Vector2f(5,100));
+	l.setPosition(350, 5);
+	l.rotate(45);
+	l1.setPosition(350, 5);
+	l1.rotate(-45);//l-complete
+
+	sf::CircleShape z(50,20), z1(40,20);
+	z.setPosition(500,60);
+	z1.setPosition(510,70);
+	z1.setFillColor(sf::Color::Blue);
+	sf::RectangleShape i(sf::Vector2f(5,100)),i1(sf::Vector2f(5,100));
+	i.setPosition(570, 145);
+	i1.setPosition(570, 145);
+	i1.rotate(45);
+	//ya
+		
+		sf::RectangleShape l2(sf::Vector2f(5,100)),l3(sf::Vector2f(5,100));
+	l2.setPosition(70, 200);
+	l2.rotate(45);
+	l3.setPosition(70, 200);
+	l3.rotate(-45);//l
+
+		
+	sf::CircleShape lo(50,20), o1(40,20);
+	lo.setPosition(200,250);
+	o1.setFillColor(sf::Color::Blue);
+	o1.setPosition(210,260);//o
+
+
+	sf::RectangleShape x(sf::Vector2f(5, 100)), x1(sf::Vector2f(5,100));//x
+	x.setPosition(460,250);
+	x.rotate(45);
+	x1.setPosition(390, 250);
+	x1.rotate(-45);
+		/* sf::Image img;
+   img.create(20, 20, sf::Color::Yellow);
 	
-	ground.setFillColor(sf::Color::Green);
-	ground.setPosition(0,450);
-	/*image.loadFromFile("imag.png");  //загружаем квртинки
-	texture.loadFromImage(image);  //загружаем текстуры 
-	sprite.setTexture(texture);  //загружаем спрайти
-	sprite.setPosition(50, 50);  //и устанавливаем позицию справйта*/
-	
-	while (window.isOpen())  //фунуция при открытом окне
-	{
-		sf::Event event;  //создаем событие
-		while(window.pollEvent(event))  //цикл которий считивает событие
-		{
-			if(event.type==sf::Event::Closed)  //если нажали на закритие
-				window.close();  //закрить
+	   sf::Texture imgT;
+	imgT.loadFromImage(img);
 
-		}
-		if(x>=400)
-			{
-				rectangle.setPosition(y,400);
-		}
-			
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		{
-		rectangle.move(-1,0);
-		}
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		{
-		rectangle.move(+1,0);
-		}if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		{
-		rectangle.move(0,-1);
-		}if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		{
-		rectangle.move(0,+1);
-		}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-		rectangle.rotate(-1);
-		}
-			if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		{
-		rectangle.rotate(+1);
-		}
+    sf::Sprite sprite;
+    sprite.setTexture(imgT);
+	sprite.setPosition(50,150);
+  */
+
+    while(window.isOpen())
+    {
+        sf::Event event;
+        while(window.pollEvent(event))
+        {
+            if(event.type == sf::Event::Closed) window.close();
+        }
 
 
-			
-
-	window.clear(sf::Color::Black);  //заливка екрана черним и обновления его
-	/*window.draw(sprite);  // рисуем наш спрайт*/
-	window.draw(ground);
-	window.draw(rectangle);  //рисовка круга(квадрата)
-	window.display();  //хз че??
-	
-	}
-
+		window.clear(sf::Color::Blue);
+		window.draw(k);
+		window.draw(k1);
+		window.draw(k2);
+		window.draw(ko);
+		window.draw(o);
+		window.draw(l);
+		window.draw(l1);
+		window.draw(z);
+		window.draw(z1);
+		window.draw(i);
+		window.draw(i1);
+		window.draw(l2);
+		window.draw(l3);
+		window.draw(lo);
+		window.draw(o1);
+		window.draw(x);
+		window.draw(x1);
+		
+		//window.draw(sprite);*/
+		window.display();
+    }
     return 0;
 }
